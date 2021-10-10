@@ -20,7 +20,7 @@ export function decrement() {
 }
 
 // 2. Create a reducer to handle your increment and decrement actions
-function counterReducer(count = 0, action) {
+function counterReducer(count = 42, action) {
 	switch (action.type) {
 		case 'INCREMENT':
 			return count + 1;
