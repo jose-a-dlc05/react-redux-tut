@@ -31,7 +31,11 @@ function counterReducer(count = 0, action) {
 	}
 }
 // 3. Create a new Redux store
-
+const store = createStore(counterReducer);
 // 4. Set up the subscribe function so we can more easily see the changes to the Redux state as they happen
+store.subscribe(() => {
+	console.log(store.getState());
+});
 
 // 5. Export the store as a default export
+export default store;
