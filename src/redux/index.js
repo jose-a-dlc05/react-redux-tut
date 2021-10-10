@@ -1,4 +1,5 @@
-import redux, { createStore } from 'redux';
+import redux, { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 /**
  * Challenge: set up redux action creators, reducer, and store
@@ -8,8 +9,13 @@ import redux, { createStore } from 'redux';
 
 // 1. Create action creators for having the count "increment" and "decrement"
 export function increment() {
-	return {
-		type: 'INCREMENT',
+	// API call to get current count
+	return (dispatch) => {
+		// Do all sorts of async stuff first
+		setTimeout(() => {
+			// THEN use dispatch({type:"INCREMENT"})
+			dispatch({ type: 'INCREMENT' });
+		}, 1500);
 	};
 }
 
@@ -31,7 +37,7 @@ function counterReducer(count = 42, action) {
 	}
 }
 // 3. Create a new Redux store
-const store = createStore(counterReducer);
+const store = createStore(counterReducer, applyMiddleware(thunk));
 // 4. Set up the subscribe function so we can more easily see the changes to the Redux state as they happen
 store.subscribe(() => {
 	console.log(store.getState());
