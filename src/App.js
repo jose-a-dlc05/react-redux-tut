@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 function App(props) {
 	return (
 		<div className='App'>
+			<h1>{props.banana}</h1>
 			<h1>COUNT GOES HERE</h1>
 			<button>-</button>
 			<button>+</button>
@@ -11,9 +12,16 @@ function App(props) {
 	);
 }
 
-export default connect(/*What parts of state do you want* , What actions to dispatch*/)(
-	App
-);
+function mapStateToProps(globalState) {
+	// returns an object where the keys are the name of the prop your component wants,
+	// values are the actual parts of the global state your component wants
+	// globalState is the state inside the reducer in redux directory
+	return {
+		banana: globalState,
+	};
+}
+
+export default connect(mapStateToProps, {})(App);
 
 // How does connect work?
 // connect(What parts of state do you want, What actions do you want to dispatch)(Component)
