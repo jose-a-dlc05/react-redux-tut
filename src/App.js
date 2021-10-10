@@ -1,31 +1,32 @@
 import './App.css';
 import { connect } from 'react-redux';
+import { increment, decrement } from './redux/index';
 
 function App(props) {
+	const { count, increment, decrement } = props;
 	return (
 		<div className='App'>
-			<h1>{props.banana}</h1>
-			<h1>COUNT GOES HERE</h1>
-			<button>-</button>
-			<button>+</button>
+			<h1>{count}</h1>
+			<button onClick={decrement}>-</button>
+			<button onClick={increment}>+</button>
 		</div>
 	);
 }
 
 function mapStateToProps(globalState) {
-	// returns an object where the keys are the name of the prop your component wants,
-	// values are the actual parts of the global state your component wants
-	// globalState is the state inside the reducer in redux directory
-	return {
-		banana: globalState,
-	};
+	return { count: globalState };
 }
 
-export default connect(mapStateToProps, {})(App);
+const mapDispatchToProps = {
+	increment,
+	decrement,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // How does connect work?
 // connect(What parts of state do you want, What actions do you want to dispatch)(Component)
-// connect(mapStateToPropsFunc, mapDispatchToPropsFunc)(Component)
+// connect(mapStateToPropsFunc, mapDispatchToProps)(Component)
 
 // It is a higher-order component
 
