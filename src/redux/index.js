@@ -7,6 +7,17 @@ import redux, { createStore } from 'redux';
  */
 
 // 1. Create action creators for having the count "increment" and "decrement"
+function increment() {
+	return {
+		type: 'INCREMENT',
+	};
+}
+
+function decrement() {
+	return {
+		type: 'DECREMENT',
+	};
+}
 
 // 2. Create a reducer to handle your increment and decrement actions
 
