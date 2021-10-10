@@ -20,7 +20,16 @@ function decrement() {
 }
 
 // 2. Create a reducer to handle your increment and decrement actions
-
+function counterReducer(count = 0, action) {
+	switch (action.type) {
+		case 'INCREMENT':
+			return count + 1;
+		case 'DECREMENT':
+			return count - 1;
+		default:
+			return count;
+	}
+}
 // 3. Create a new Redux store
 
 // 4. Set up the subscribe function so we can more easily see the changes to the Redux state as they happen
